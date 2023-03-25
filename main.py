@@ -4,13 +4,24 @@ NB-2023.03.22
 LOtto számgenerátor , grafikai változat
 '''
 import tkinter as tk
+import tkinter.messagebox as messagebox
 import random
 
 
 def fogadas():
     te_szamaid = []
     for i in range(5):
-        te_szamaid.append(int(entries[i].get()))
+        try:
+            szam = int(entries[i].get())
+            if szam < 1 or szam > 90:
+                raise ValueError
+            if szam in te_szamaid:
+                raise ValueError
+            te_szamaid.append(szam)
+        except ValueError:
+            messagebox.showerror("Hiba", "Kérem, adjon meg 1 és 90 közötti egész számot, amely nem ismétlődik!")
+            return
+
     print(te_szamaid)
 
     # ----------------- véletlen szám generátor ---------------------------------
@@ -23,7 +34,7 @@ def fogadas():
             nyeroszamok.append(rand_num)
     print(nyeroszamok)
 
-    a=len(set(te_szamaid).intersection(set(nyeroszamok)))
+    a = len(set(te_szamaid).intersection(set(nyeroszamok)))
 
     if len(set(te_szamaid).intersection(set(nyeroszamok))) > 0:
         label2_result.config(text=f"Gratulálok, eltaláltál {a} számot", bg='goldenrod')
@@ -52,11 +63,10 @@ button.grid(row=1, column=3, padx=5, pady=5)
 exit_button = tk.Button(root, text="\u274c  Kilépés", command=root.quit)
 exit_button.grid(row=1, column=1, padx=5, pady=5)
 
+label1_result = tk.Label(root, text="", bg='Goldenrod', font=('Arial', 15))
+label1_result.grid(row=3, column=0, columnspan=5, padx=10, pady=5)
 
-label1_result = tk.Label(root, text="",bg='Goldenrod',font=('Arial', 15))
-label1_result.grid(row=3, column=0, columnspan=5, padx=10, pady=5 )
-
-label2_result = tk.Label(root, text="",bg='Goldenrod',font=('Arial', 15))
-label2_result.grid(row=4, column=0, columnspan=5, padx=10, pady=5 )
+label2_result = tk.Label(root, text="", bg='Goldenrod', font=('Arial', 15))
+label2_result.grid(row=4, column=0, columnspan=5, padx=10, pady=5)
 
 root.mainloop()
