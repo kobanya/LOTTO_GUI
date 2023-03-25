@@ -3,16 +3,15 @@
 NB-2023.03.22
 LOtto számgenerátor , grafikai változat
 '''
-
 import tkinter as tk
 import random
 
 
-def get_numbers():
-    numbers = []
+def fogadas():
+    te_szamaid = []
     for i in range(5):
-        numbers.append(int(entries[i].get()))
-    print(numbers)
+        te_szamaid.append(int(entries[i].get()))
+    print(te_szamaid)
 
     # ----------------- véletlen szám generátor ---------------------------------
 
@@ -23,7 +22,18 @@ def get_numbers():
         if rand_num not in nyeroszamok:
             nyeroszamok.append(rand_num)
     print(nyeroszamok)
-    label1_result.config(text=f"A kisorsolt nyerőszámok: {nyeroszamok}", bg='goldenrod')
+
+    a=len(set(te_szamaid).intersection(set(nyeroszamok)))
+
+    if len(set(te_szamaid).intersection(set(nyeroszamok))) > 0:
+        label2_result.config(text=f"Gratulálok, eltaláltál {a} számot", bg='goldenrod')
+    else:
+        label2_result.config(text=f"Sajnos nem nyertél!", bg='goldenrod')
+
+    label1_result.config(text=f"A kisorsolt nyerőszámok: {' '.join(map(str, nyeroszamok))}", bg='goldenrod')
+
+
+# ----------------------- GUI kód ------------------------------
 
 root = tk.Tk()
 root.title("LOTTO 5/90 fogadás")
@@ -36,11 +46,13 @@ for i in range(5):
     entry.grid(row=0, column=i, padx=5, pady=5)
     entries.append(entry)
 
-button = tk.Button(root, text="FOGADÁS", command=get_numbers)
+button = tk.Button(root, text="FOGADÁS", command=fogadas)
 button.grid(row=1, column=2, padx=5, pady=5)
 
-
 label1_result = tk.Label(root, text="",bg='Goldenrod',font=('Arial', 15))
-label1_result.grid(row=3, column=0, columnspan=5, padx=10, pady=5 ) # columnspan 5-re állítása megakadályozza, hogy a kiírásnál elmozduljon a sor.
+label1_result.grid(row=3, column=0, columnspan=5, padx=10, pady=5 )
+
+label2_result = tk.Label(root, text="",bg='Goldenrod',font=('Arial', 15))
+label2_result.grid(row=4, column=0, columnspan=5, padx=10, pady=5 )
 
 root.mainloop()
