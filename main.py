@@ -51,22 +51,25 @@ root.title("LOTTO 5/90 fogadás")
 root.geometry("500x250")
 root.configure(bg='Goldenrod')
 
+label1_result = tk.Label(root, text="Adj meg 5 számot , 1 és 90 között", bg='Goldenrod', font=('Arial', 15))
+label1_result.grid(row=0, column=0, columnspan=5, padx=10, pady=5)
+
 entries = []
 for i in range(5):
     entry = tk.Entry(root, width=3, borderwidth=2, justify="center", font=('Arial', 30))
-    entry.grid(row=0, column=i, padx=5, pady=5)
+    entry.grid(row=1, column=i, padx=5, pady=5)
     entries.append(entry)
 
-button = tk.Button(root, text="\u2714  FOGADÁS", command=fogadas)
-button.grid(row=1, column=3, padx=5, pady=5)
+button = tk.Button(root, text="\u2714  SORSOLÁS", command=fogadas)
+button.grid(row=2, column=3, padx=5, pady=5)
 
 exit_button = tk.Button(root, text="\u274c  Kilépés", command=root.quit)
-exit_button.grid(row=1, column=1, padx=5, pady=5)
-
-label1_result = tk.Label(root, text="", bg='Goldenrod', font=('Arial', 15))
-label1_result.grid(row=3, column=0, columnspan=5, padx=10, pady=5)
+exit_button.grid(row=2, column=1, padx=5, pady=5)
 
 label2_result = tk.Label(root, text="", bg='Goldenrod', font=('Arial', 15))
 label2_result.grid(row=4, column=0, columnspan=5, padx=10, pady=5)
+
+label3_result = tk.Label(root, text="", bg='Goldenrod', font=('Arial', 15))
+label3_result.grid(row=5, column=0, columnspan=5, padx=10, pady=5)
 
 root.mainloop()
