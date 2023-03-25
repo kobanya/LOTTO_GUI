@@ -37,7 +37,7 @@ def fogadas():
 
 root = tk.Tk()
 root.title("LOTTO 5/90 fogadás")
-root.geometry("450x250")
+root.geometry("500x250")
 root.configure(bg='Goldenrod')
 
 entries = []
@@ -46,8 +46,12 @@ for i in range(5):
     entry.grid(row=0, column=i, padx=5, pady=5)
     entries.append(entry)
 
-button = tk.Button(root, text="FOGADÁS", command=fogadas)
-button.grid(row=1, column=2, padx=5, pady=5)
+button = tk.Button(root, text="\u2714  FOGADÁS", command=fogadas)
+button.grid(row=1, column=3, padx=5, pady=5)
+
+exit_button = tk.Button(root, text="\u274c  Kilépés", command=root.quit)
+exit_button.grid(row=1, column=1, padx=5, pady=5)
+
 
 label1_result = tk.Label(root, text="",bg='Goldenrod',font=('Arial', 15))
 label1_result.grid(row=3, column=0, columnspan=5, padx=10, pady=5 )
