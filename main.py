@@ -42,9 +42,9 @@ def fogadas():
     a = len(set(te_szamaid).intersection(set(nyeroszamok)))
 
     if len(set(te_szamaid).intersection(set(nyeroszamok))) > 0:
-        label2_result.config(text=f"Gratulálok, eltaláltál {a} számot", bg='goldenrod')
+        label2_result.config(text=f"Gratulálok, eltaláltál {a} számot", bg='goldenrod',fg="#006400")
     else:
-        label2_result.config(text=f"Sajnos nem nyertél!", bg='goldenrod')
+        label2_result.config(text=f"Sajnos nem nyertél!", bg='goldenrod', fg='red')
 
     label5_result.config(text=f"A kisorsolt nyerőszámok: {' '.join(map(str, nyeroszamok))}", bg='goldenrod')
 
